@@ -11,8 +11,8 @@ var Enemy = function(xPos,yPos) {
     this.xInitial = 0;
     this.x = xPos;
     this.y = yPos;
-    this.width = 50;
-    this.height = 80;
+    this.width = 70;
+    this.height = 70;
     this.speed = Math.floor(Math.random() * 50);
 
     this.reset = function(){
@@ -28,8 +28,10 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = (this.x + this.speed * dt) ;
     //handle collision
-    if(collides(this,player))
-        reloadPage();
+    if(collides(this,player)){
+        alert("You lost but you can do it \uD83D\uDE00 try again");
+        resetGame();
+    }
 
     if(this.x >= 400)
         this.reset();
@@ -105,11 +107,13 @@ var Player = function() {
     this.moveUp = function(){
         this.y -= this.stepY;
         if(this.win()){
-            resetGame();
-            document.querySelector('canvas').style.display='none';
-            let score_block=document.querySelector('.score'); 
-            score_block.style.display = 'block';
-            score_block.style.opacity = 1;
+            setTimeout(() => {
+                resetGame();
+                document.querySelector('canvas').style.display='none';
+                let score_block=document.querySelector('.score'); 
+                score_block.style.display = 'block';
+                score_block.style.opacity = 1;
+            }, 600);  
         }
     }
 
