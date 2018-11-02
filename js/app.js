@@ -1,19 +1,19 @@
 let posY = [50,140,230];
-let posX=[0,-150,-300,-450,-600,-750]
+let posX=[0,-150,-300]
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(xPos,yPos) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.xInitial=0;
-    this.x=0;
-    this.y=0;
-    this.width=50;
-    this.height=80;
-    this.speed=20;
+    this.xInitial = 0;
+    this.x = xPos;
+    this.y = yPos;
+    this.width = 50;
+    this.height = 80;
+    this.speed = Math.floor(Math.random() * 50);
 };
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -170,11 +170,9 @@ function collides(a, b) {
         return false;
 }
 
-function createEnemy(x) {
-    let yRandomIndex = Math.floor(Math.random() * 10) % 3;
-    let enem = new Enemy();
-    enem.x = posX[x];
-    enem.xInitial = posX[x];
-    enem.y = posY[yRandomIndex];
+function createEnemy(i) {
+   // let yRandomIndex = Math.floor(Math.random() * 10) % 3;
+    let enem = new Enemy(posX[i], posY[i]);
+    enem.xInitial = posX[i];
     return enem; 
 }

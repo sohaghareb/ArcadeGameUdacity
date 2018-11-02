@@ -19,7 +19,7 @@ You will only need your browser.
 * Once a the player collides with an enemy, the game is reset and the player moves back to the starting square.
 * Once the player reaches the water (i.e., the top of the game board), the game is won.
 
-![Screenshot](img/screenshot.PNG)
+![Screenshot](images/screenshot.PNG)
 
 ## Dependencies
 
@@ -29,4 +29,3 @@ You will only need your browser.
 
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
