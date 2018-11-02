@@ -14,6 +14,11 @@ var Enemy = function(xPos,yPos) {
     this.width = 50;
     this.height = 80;
     this.speed = Math.floor(Math.random() * 50);
+
+    this.reset = function(){
+        this.x = this.xInitial;
+        this.speed = Math.floor(Math.random() * 50);
+    }
 };
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -27,12 +32,7 @@ Enemy.prototype.update = function(dt) {
         reloadPage();
 
     if(this.x >= 400)
-        this.x=this.xInitial;
-
-    // setTimeout(() => {
-    //     this.update(dt);
-    // }, 3000);
-
+        this.reset();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -52,10 +52,15 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.x = 200;
     this.y = 420;
-    this.width=101;
-    this.height=171;
+    this.width = 101;
+    this.height =171;
     this.stepY = 90;
     this.stepX = 100;
+
+    this.reset = function(){
+        this.x = 200;
+        this.y = 420;
+    }
     
     this.validRight = function(){
         if(this.x + this.stepX <= 400){
@@ -86,21 +91,25 @@ var Player = function() {
     }
 
     this.moveRight = function(){
-        this.x+=this.stepX;
+        this.x += this.stepX;
     }
 
     this.moveDown = function(){
-        this.y+=this.stepY;
+        this.y += this.stepY;
     }
 
     this.moveLeft = function(){
-        this.x-=this.stepX;
+        this.x -= this.stepX;
     }
 
     this.moveUp = function(){
-        this.y-=this.stepY;
+        this.y -= this.stepY;
         if(this.win()){
-            reloadPage();
+            resetGame();
+            document.querySelector('canvas').style.display='none';
+            let score_block=document.querySelector('.score'); 
+            score_block.style.display = 'block';
+            score_block.style.opacity = 1;
         }
     }
 
@@ -113,9 +122,7 @@ var Player = function() {
 
 };
 
-Player.prototype.update = function() {
-    
-};
+Player.prototype.update = function() {};
 
 Player.prototype.handleInput= function(keyCode){
     console.log(keyCode);
@@ -175,4 +182,29 @@ function createEnemy(i) {
     let enem = new Enemy(posX[i], posY[i]);
     enem.xInitial = posX[i];
     return enem; 
+}
+
+function resetGame (){
+    allEnemies.forEach(function(enemy) {
+        enemy.reset();
+    });
+    player.reset();
+}
+
+document.querySelector('.mybutton').onclick=function(){
+    let score_div=document.querySelector('.score');
+    score_div.classList.toggle('fadeout');
+    setTimeout(() => {
+        score_div.style.opacity = 0;
+        score_div.style.display = 'none';
+        let container= document.querySelector('canvas');
+        container.style.opacity = 0;
+        container.classList.add('fadein');
+        setTimeout(() => {
+            container.style.opacity = 1;
+            container.style.display = '';
+            container.classList.remove('fadein');
+            score_div.classList.remove('fadeout');
+        }, 501);
+    },501);
 }
