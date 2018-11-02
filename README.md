@@ -1,6 +1,32 @@
-frontend-nanodegree-arcade-game
-===============================
+# Arcade Game Project
+The Arcade Game Project is all about demonstrating my skills of JavaScript specially OOP. 
+## Getting Started
+Download the zip file or clone via Github
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Prerequisites
+You will only need your browser.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Table of Contents
+
+* [How To Play](#how_to_play)
+* [Instructions](#instructions)
+* [Dependencies](#dependencies)
+* [Contributing](#contributing)
+
+## How To Play
+* The player can move left, right, up and down.
+* The enemies move at varying speeds on the paved block portion of the game board.
+* Once a the player collides with an enemy, the game is reset and the player moves back to the starting square.
+* Once the player reaches the water (i.e., the top of the game board), the game is won.
+
+![Screenshot](img/screenshot.PNG)
+
+## Dependencies
+
+* None
+
+## Contributing
+
+This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+
+For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).

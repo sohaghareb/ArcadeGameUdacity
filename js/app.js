@@ -1,5 +1,5 @@
 let posY = [50,140,230];
-let posX=[0,-100,-200,-320,-430,-600]
+let posX=[0,-150,-300,-450,-600,-750]
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -13,16 +13,15 @@ var Enemy = function() {
     this.y=0;
     this.width=50;
     this.height=80;
-    this.stepMove=1;
+    this.speed=20;
 };
-
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = (this.x + this.stepMove) ;
+    this.x = (this.x + this.speed * dt) ;
     //handle collision
     if(collides(this,player))
         reloadPage();
@@ -30,9 +29,9 @@ Enemy.prototype.update = function(dt) {
     if(this.x >= 400)
         this.x=this.xInitial;
 
-    setTimeout(() => {
-        this.update(dt);
-    }, 3000);
+    // setTimeout(() => {
+    //     this.update(dt);
+    // }, 3000);
 
 };
 
@@ -141,7 +140,7 @@ Player.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 allEnemies=[];
-for(let i = 0; i < 4; ++i) {
+for(let i = 0; i < 3; ++i) {
     let e = createEnemy(i);
     allEnemies.push(e);
 }
